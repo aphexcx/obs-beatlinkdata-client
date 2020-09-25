@@ -1,0 +1,15 @@
+{
+  "name": "obs-beatlinkdata-client",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "debug": "~2.6.9",
+    "express": "~4.17.1",
+    "express-ws": "^4.0.0",
+    "http-errors": "~1.6.3",
+    "mdns": "^2.5.1"
+  }
+}

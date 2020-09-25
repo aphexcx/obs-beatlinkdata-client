@@ -1,0 +1,30 @@
+body {
+  background-color: black;
+  color: white;
+  /*font-style: 'titling';*/
+  padding-left: 26px;
+  padding-top: 20px;
+}
+
+#artist {
+  font-family: 'Neutra Display Titling', sans-serif;
+  font-size: 55px;
+  font-weight: normal;
+}
+
+#title {
+  font-family: "Neutra Text Alt", sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+}
+
+#label {
+  font-size: 35px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.fade {
+  opacity: 1;
+  transition: 1s opacity;
+}
