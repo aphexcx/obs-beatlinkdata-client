@@ -10,6 +10,7 @@
     "express": "~4.17.1",
     "express-ws": "^4.0.0",
     "http-errors": "~1.6.3",
-    "mdns": "^2.5.1"
+    "mdns": "^2.5.1",
+    "multer": "^1.4.2"
   }
 }

@@ -36,6 +36,7 @@ const updateTrack = (track) => {
     const artist = formatArtist(track);
     const titleEl = document.querySelector('#title');
     const artistEl = document.querySelector('#artist');
+    const albumArtEl = document.querySelector('#albumArt');
     const overlay = document.querySelectorAll('.fade');
 
     if (titleEl.innerHTML === title && artistEl.innerHTML === artist)
@@ -46,10 +47,16 @@ const updateTrack = (track) => {
         el.style.opacity = 0;
     });
 
+    let base64 = track.albumArt;
+    let buffer = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+    let blob = new Blob([buffer], {type: "image/png"});
+    let artUrl = URL.createObjectURL(blob);
+
     // Fade in the new trace.
     setTimeout(() => {
         titleEl.innerHTML = title;
         artistEl.innerHTML = artist;
+        albumArtEl.src = artUrl;
         overlay.forEach((el) => {
             el.style.opacity = 1;
         });
@@ -81,11 +88,13 @@ ws.onmessage = (event) => {
         updateTrack({
             title: 'ID',
             artist: 'ID',
+            albumArt: data.albumArt
         });
     } else {
         updateTrack({
             title: data.title,
             artist: data.artist,
+            albumArt: data.albumArt
         });
     }
 };

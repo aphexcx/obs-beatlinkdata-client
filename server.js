@@ -2,6 +2,9 @@
 
 const express = require('express');
 const expressws = require('express-ws');
+const multer = require('multer');
+let upload = multer({storage: multer.memoryStorage()});
+
 const path = require('path');
 
 const mdns = require('mdns');
@@ -19,7 +22,8 @@ const sendCurrentTrack = () => {
         for (let c of wsapp.getWss().clients) {
             c.send(JSON.stringify({
                 title: curTrack.title,
-                artist: curTrack.artist
+                artist: curTrack.artist,
+                albumArt: curTrack.albumArt
             }));
         }
     }
@@ -28,7 +32,7 @@ const sendCurrentTrack = () => {
 app
     .use(express.json())
     .get('/', (req, res) => {
-        res.sendFile(path.resolve('OBS_browser_overlay.html'));
+        res.sendFile(path.resolve("public", 'OBS_browser_overlay.html'));
 
     })
     .use(express.static('public'))
@@ -43,6 +47,15 @@ app
         curTrack = req.body
         sendCurrentTrack()
         res.send({'success': true});
+    })
+    .post('/currentAlbumArt', upload.single('image'), (req, res, next) => {
+        curTrack.albumArt = req.file.buffer.toString('base64')
+        sendCurrentTrack()
+        res.send({'success': true});
+    })
+    .use(function (err, req, res, next) {
+        console.log('This is the invalid field ->', err.field)
+        next(err)
     })
     .listen(8080);
 
