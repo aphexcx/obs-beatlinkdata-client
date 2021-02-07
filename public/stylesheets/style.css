@@ -3,7 +3,10 @@ body {
     margin: 0px auto;
     overflow: hidden;
     color: white;
-    text-shadow: 2px 2px black;
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    2px 2px 2px black;
     padding-left: 26px;
     padding-top: 20px;
 }
@@ -19,17 +22,27 @@ body {
     padding: 12px;
 }
 
+@font-face {
+    font-family: 'NeutraDispTitling';
+    src: url("/Users/afik_cohen/Library/Fonts/NeutraDisp Titling.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'NeutraTextAlt';
+    src: url("/Users/afik_cohen/Library/Fonts/NeutraText BoldAlt.otf") format("opentype");
+}
+
 #artist {
-    font-family: "Neutra Display Titling";
+    font-family: "NeutraDispTitling";
 !important;
-    font-size: 65px;
+    font-size: 70px;
 }
 
 #title {
-    font-family: "Neutra Text Alt";
+    font-family: "NeutraTextAlt";
 !important;
-    font-size: 65px;
     font-weight: bold;
+    font-size: 70px;
 }
 
 #label {

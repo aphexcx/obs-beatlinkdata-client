@@ -45,7 +45,6 @@ app
     })
     .post('/currentTrack', (req, res, next) => {
         curTrack = req.body
-        sendCurrentTrack()
         res.send({'success': true});
     })
     .post('/currentAlbumArt', upload.single('image'), (req, res, next) => {
